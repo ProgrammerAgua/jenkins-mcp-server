@@ -1,0 +1,19 @@
+spring:
+  ai:
+    mcp:
+      server:
+        stdio: true
+        name: jenkins-api
+        version: 0.0.1
+        type: SYNC
+  main:
+    web-application-type: none
+    banner-mode: off
+logging:
+  level:
+    root: INFO
+jenkins:
+  # jenkins的访问url
+  server-uri: XXX
+  username: XXX
+  password: XXX
