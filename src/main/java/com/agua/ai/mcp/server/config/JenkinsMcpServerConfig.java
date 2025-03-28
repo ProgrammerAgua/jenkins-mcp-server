@@ -10,7 +10,7 @@ import org.springframework.context.annotation.Configuration;
 public class JenkinsMcpServerConfig {
 
     @Bean
-    public ToolCallbackProvider weatherTools(JenkinsApiService jenkinsApiService) {
+    public ToolCallbackProvider jenkinsTools(JenkinsApiService jenkinsApiService) {
         return MethodToolCallbackProvider.builder().toolObjects(jenkinsApiService).build();
     }
 }

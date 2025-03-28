@@ -8,8 +8,16 @@ import org.springframework.stereotype.Component;
 @Component
 @ConfigurationProperties("jenkins")
 public class JenkinsProperties {
+    /**
+     * 服务URI
+     */
     private String serverUri;
+    /**
+     * 用户名
+     */
     private String username;
+    /**
+     * 密码/token
+     */
     private String password;
-    private String token;
 }

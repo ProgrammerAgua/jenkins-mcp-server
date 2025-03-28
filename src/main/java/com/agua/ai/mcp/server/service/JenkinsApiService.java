@@ -1,17 +1,19 @@
 package com.agua.ai.mcp.server.service;
 
-import com.alibaba.fastjson2.JSON;
-import com.alibaba.fastjson2.TypeReference;
 import com.google.gson.ExclusionStrategy;
 import com.google.gson.FieldAttributes;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.agua.ai.mcp.server.util.JenkinsTemplate;
+import com.google.gson.reflect.TypeToken;
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.AllArgsConstructor;
 import org.springframework.ai.tool.annotation.Tool;
 import org.springframework.ai.tool.annotation.ToolParam;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
+import java.util.Map;
 
 @Service
 @AllArgsConstructor
@@ -88,7 +90,8 @@ public class JenkinsApiService {
                                      @ToolParam(description = "任务名称") String jobName,
                                      @Schema(description = "参数列表（格式：Map<String, List<String>>）") String properties) {
         Gson gson = new GsonBuilder().create();
-        return gson.toJson(jenkinsTemplate.buildJobWithParams(optionalFolderPath, jobName, JSON.parseObject(properties, new TypeReference<>() {})));
+        Map<String, List<String>> paramsMap = gson.fromJson(properties, new TypeToken<Map<String, List<String>>>(){}.getType());
+        return gson.toJson(jenkinsTemplate.buildJobWithParams(optionalFolderPath, jobName, paramsMap));
     }
 
     @Tool(description = "获取任务上次构建序号")

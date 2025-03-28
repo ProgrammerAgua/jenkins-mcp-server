@@ -14,6 +14,6 @@ logging:
     root: INFO
 jenkins:
   # jenkins的访问url
-  server-uri: XXX
-  username: XXX
-  password: XXX
+  server-uri: ${JENKINS_API_SERVER_URI}
+  username: ${JENKINS_API_USERNAME}
+  password: ${JENKINS_API_TOKEN}
