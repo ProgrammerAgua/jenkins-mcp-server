@@ -9,11 +9,11 @@ spring:
   main:
     web-application-type: none
     banner-mode: off
-logging:
-  level:
-    root: INFO
 jenkins:
   # jenkins的访问url
   server-uri: ${JENKINS_API_SERVER_URI}
   username: ${JENKINS_API_USERNAME}
   password: ${JENKINS_API_TOKEN}
+logging:
+  level:
+    root: INFO
