@@ -40,7 +40,7 @@ mvn clean package
 ```
 成功构建后，将在目标 `/target` 中生成名称为 `mcp-jenkins-server-0.0.1-SNAPSHOT.jar` 的文件。请在 `mcp.json` 配置中使用此文件的完整路径:
 ```bash
-{your_path}\\mcp-jenkins-server-0.0.1-SNAPSHOT.jar
+{你的路径}\\mcp-jenkins-server-0.0.1-SNAPSHOT.jar
  ```
 
 ### mcp.json配置
