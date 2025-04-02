@@ -1,3 +1,4 @@
+[English](README.md) | [中文](README.zh-CN.md)
 # Jenkins API MCP Server
 
 This is a MCP Server service based on Spring AI for Jenkins Rest API calls, providing common operation interfaces for Jenkins jobs.
@@ -56,6 +57,7 @@ mvn package
     }
   }
 }
+```
 
 ## API Documentation
 ### Job Management

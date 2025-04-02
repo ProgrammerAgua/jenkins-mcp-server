@@ -1,3 +1,4 @@
+[English](README.md) | [中文](README.zh-CN.md)
 # Jenkins API MCP Server
 
 这是一个基于 Spring AI 的 Jenkins Rest API 调用的 MCP Server 服务，提供了对 Jenkins 任务的常用操作接口。
