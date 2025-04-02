@@ -1,4 +1,4 @@
-[English](README.md) | [中文](README.zh-CN.md)
+English | [中文](README.zh-CN.md)
 # Jenkins API MCP Server
 
 This is a MCP Server service based on Spring AI for Jenkins Rest API calls, providing common operation interfaces for Jenkins jobs.
@@ -38,6 +38,11 @@ Before running the project, you need to package it using Maven:
 ```bash
 mvn package
 ```
+After a successful build, a file named `mcp-jenkins-server-0.0.1-SNAPSHOT.jar` will be generated in the `/target` directory. Use the full path to this file in your `mcp.json` configuration:
+
+```bash
+{your_path}\\mcp-jenkins-server-0.0.1-SNAPSHOT.jar
+ ```
 
 ### mcp.json Configuration
 ```yaml
