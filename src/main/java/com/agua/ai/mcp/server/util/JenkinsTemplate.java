@@ -7,8 +7,10 @@ import com.cdancy.jenkins.rest.domain.job.BuildInfo;
 import com.cdancy.jenkins.rest.domain.job.JobInfo;
 import com.cdancy.jenkins.rest.domain.job.JobList;
 import com.cdancy.jenkins.rest.domain.job.ProgressiveText;
+import com.cdancy.jenkins.rest.domain.user.User;
 import com.cdancy.jenkins.rest.features.JobsApi;
 import com.agua.ai.mcp.server.properties.JenkinsProperties;
+import com.cdancy.jenkins.rest.features.UserApi;
 import jakarta.annotation.PostConstruct;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -26,6 +28,8 @@ public class JenkinsTemplate {
 
     private JobsApi jobsApi;
 
+    private UserApi userApi;
+
     @Autowired
     public JenkinsTemplate(JenkinsProperties jenkinsProperties) {
         this.jenkinsClient = JenkinsClient.builder()
@@ -37,6 +41,7 @@ public class JenkinsTemplate {
     @PostConstruct
     public void init() {
         this.jobsApi = jenkinsClient.api().jobsApi();
+        this.userApi = jenkinsClient.api().userApi();
     }
 
     /**
@@ -232,5 +237,14 @@ public class JenkinsTemplate {
      */
     public ProgressiveText progressiveTextJob(String optionalFolderPath, String jobName, int start) {
         return jobsApi.progressiveText(optionalFolderPath, jobName, start);
+    }
+
+    /**
+     * 获取当前用户详情
+     *
+     * @return 用户详情
+     */
+    public User getUserInfo() {
+        return userApi.get();
     }
 }

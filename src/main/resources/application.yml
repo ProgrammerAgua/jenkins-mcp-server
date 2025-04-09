@@ -16,4 +16,4 @@ jenkins:
   password: ${JENKINS_API_TOKEN}
 logging:
   level:
-    root: INFO
+    root: ERROR

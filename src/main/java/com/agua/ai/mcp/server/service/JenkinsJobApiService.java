@@ -1,12 +1,11 @@
 package com.agua.ai.mcp.server.service;
 
+import com.agua.ai.mcp.server.util.JenkinsTemplate;
 import com.google.gson.ExclusionStrategy;
 import com.google.gson.FieldAttributes;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-import com.agua.ai.mcp.server.util.JenkinsTemplate;
 import com.google.gson.reflect.TypeToken;
-import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.AllArgsConstructor;
 import org.springframework.ai.tool.annotation.Tool;
 import org.springframework.ai.tool.annotation.ToolParam;
@@ -17,7 +16,7 @@ import java.util.Map;
 
 @Service
 @AllArgsConstructor
-public class JenkinsApiService {
+public class JenkinsJobApiService {
 
     private final JenkinsTemplate jenkinsTemplate;
 
@@ -88,7 +87,8 @@ public class JenkinsApiService {
     @Tool(description = "构建带参数的任务")
     public String buildJobWithParams(@ToolParam(description = "可选的文件夹路径") String optionalFolderPath,
                                      @ToolParam(description = "任务名称") String jobName,
-                                     @Schema(description = "参数列表（格式：Map<String, List<String>>）") String properties) {
+                                     @ToolParam(description = "参数列表（必填且不是空值），示例：{\"param1\":[\"value1\", \"value2\"], \"param2\":[\"value3\"]}")
+                                     String properties) {
         Gson gson = new GsonBuilder().create();
         Map<String, List<String>> paramsMap = gson.fromJson(properties, new TypeToken<Map<String, List<String>>>(){}.getType());
         return gson.toJson(jenkinsTemplate.buildJobWithParams(optionalFolderPath, jobName, paramsMap));
@@ -157,5 +157,11 @@ public class JenkinsApiService {
                           @ToolParam(description = "开始位置（必须是整数）") String start) {
         Gson gson = new GsonBuilder().create();
         return gson.toJson(jenkinsTemplate.progressiveTextJob(optionalFolderPath, jobName, Integer.parseInt(start)));
+    }
+
+    @Tool(description = "获取当前用户详情")
+    public String getUserInfo() {
+        Gson gson = new GsonBuilder().create();
+        return gson.toJson(jenkinsTemplate.getUserInfo());
     }
 }
